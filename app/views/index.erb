@@ -1,1 +1,46 @@
-<h1>Home Page</h1>
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Contact List O-Rama</title>
+</head>
+<body>
+<table id="contactList">
+</table>
+<section>
+  <h3>Search contacts</h3>
+  <form action="/" id="searchForm">
+    <input type="text" id="s" placeholder="Search for name, phone#, or email" /><br>
+    <input type="submit" value="Submit" />
+  </form>
+  <table id="result"></table>
+</section>
+<section>
+  <button id="create-new-contact">Create new contact</button>
+  <form id="new-contact" method="POST" action="/new/">
+    <input type="text" name="first-name" id="first-name" placeholder="Enter first name" /><br>
+    <input type="text" name="last-name" id="last-name" placeholder="Enter last name" /><br>
+    <input type="text" name="email" id="email" placeholder="Enter email" /><br>
+    <input type="text" name="phone" id="phone" placeholder="Enter phone number" /><br>
+    <input type="submit" name="submit" id="submit" value="Submit" />
+  </form>
+</section>
+<section>
+  <h3>List all contacts</h3>
+  <form id="new-contact" method="get" action="/list/">
+    <input type="button" name="submit" id="submit" value="Submit" />
+  </form>
+</section>
+<section>
+  <h3>Delete a contact</h3>
+  <form id="delete" method="POST" action="/delete">
+    <input type="text" name="first-name" id="first-name" placeholder="Enter first name" /><br>
+    <input type="text" name="last-name" id="last-name" placeholder="Enter last name" /><br>
+    <input type="text" name="email" id="email" placeholder="Enter email" /><br>
+    <input type="text" name="phone" id="phone" placeholder="Enter phone number" /><br>
+    <input type="submit" name="submit" id="submit" value="Submit" />
+  </form>
+</section>
+<!-- <script src="https://code.jquery.com/jquery-3.1.0.js"></script> -->
+</body>
+</html>
