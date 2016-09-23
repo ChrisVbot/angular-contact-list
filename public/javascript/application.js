@@ -4,7 +4,6 @@ $(document).ready(function() {
     $.ajax('/api/contacts/', {
       dataType: "json",
       success: function (data) {
-        console.log(data);
         var $contactList = $('.contactList');
         $contactList.empty();
         populateList($contactList, data);
@@ -30,8 +29,7 @@ $(document).ready(function() {
 
   //Populates list and generates table headers
   var populateList = function(list, contacts) {
-    for (var i = 0; i < contacts.length; i++) {
-      var contact = contacts[i];
+    contacts.forEach(function(contact){
       var $newContact = $('<tr>');
       var $contactName = $('<td>');
       var $contactEmail = $('<td>');
@@ -41,14 +39,13 @@ $(document).ready(function() {
       $contactPhone.text(contact.phone_number);
       $newContact.append($contactName, $contactEmail, $contactPhone);
       list.append($newContact);
-    };
+    });
   };
 
   //Performs get request on every keypress to autopopulate
   //search results
   $("#searchField").on('keypress', function(event){
     var searchResults = $('#result');
-    var searchField = $('#searchField')
     var searchTerm = $('#searchField').val();
     var data = {searchQuery: searchTerm}
     if (event.keyCode === 13){  
