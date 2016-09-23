@@ -6,16 +6,16 @@
 </head>
 <body>
 
-<section>
+<section class="contact-search">
   <h3>Search contacts</h3>
   <form action="/" id="searchForm">
-    <input type="text" id="s" placeholder="Search for name, phone#, or email" /><br>
-    <input type="submit" value="Submit" />
+    <input type="text" id="searchField" placeholder="Search for name, phone#, or email" />
   </form>
-  <table id="result"></table>
+  <table id="result">
+  </table>
 </section>
 
-<section>
+<section class="newContactForm">
   <button id="create-new-contact">Create new contact</button>
   <form id="new-contact" class="new-contact hidden" method="POST" action="/new/">
     <input type="text" name="first-name" id="first-name" placeholder="Enter first name" /><br>
@@ -27,13 +27,13 @@
   <table id="new-contact-create"></table>
 </section>
 
-<section>
+<section class="all-contacts">
   <button id="list-all">Show all contacts</button>
   <table class="contactList hidden"></table>
 </section>
 
 
-<section>
+<section class="delete-contact">
   <button id="delete-contact-button">Delete a contact</button>
   <form id="delete" class="delete hidden" method="post" action="/delete/">
   <input type="text" id="d" placeholder="Enter email" /><br>

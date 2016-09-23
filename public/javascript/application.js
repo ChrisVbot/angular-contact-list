@@ -1,17 +1,19 @@
 $(document).ready(function() {
 
-
   function getList(){
-  $.ajax('/api/contacts/', {
-    dataType: "json",
-    success: function (data) {
-      console.log(data);
-      var $contactList = $('.contactList');
-      $contactList.empty();
-      populateList($contactList, data);
-    }
-    });
-  };
+    $.ajax('/api/contacts/', {
+      dataType: "json",
+      success: function (data) {
+        console.log(data);
+        var $contactList = $('.contactList');
+        $contactList.empty();
+        populateList($contactList, data);
+      },
+      fail: function(jqXHR, textStatus){
+        console.log("Failed because: " + jqXHR.textStatus);
+      }
+      });
+    };
 
     $('#list-all').on('click', function(event){
       event.preventDefault();
@@ -26,63 +28,54 @@ $(document).ready(function() {
       };
     });
 
-
+  //Populates list and generates table headers
   var populateList = function(list, contacts) {
-      for (var i = 0; i < contacts.length; i++) {
-        var contact = contacts[i];
-        var $newContact = $('<tr>');
-        var $contactName = $('<td>');
-        var $contactEmail = $('<td>');
-        var $contactPhone = $('<td>');
-        $contactName.text(contact.first_name + " " + contact.last_name);
-        $contactEmail.text(contact.email);
-        $contactPhone.text(contact.phone_number);
-        $newContact.append($contactName, $contactEmail, $contactPhone);
-        list.append($newContact);
-      };
+    for (var i = 0; i < contacts.length; i++) {
+      var contact = contacts[i];
+      var $newContact = $('<tr>');
+      var $contactName = $('<td>');
+      var $contactEmail = $('<td>');
+      var $contactPhone = $('<td>');
+      $contactName.text(contact.first_name + " " + contact.last_name);
+      $contactEmail.text(contact.email);
+      $contactPhone.text(contact.phone_number);
+      $newContact.append($contactName, $contactEmail, $contactPhone);
+      list.append($newContact);
+    };
   };
 
-  var getPropertyValue = function(key) {
-      return this[key];
-  };
-
-  // The "this" value for the function below is the search term
-  var valueThatInclude = function(value) {
-    return value.toString().includes(this);
-  };
-
-  // The "this" value for the function below is the search term. Returns true if the search term is contained within the object.
-  var objectHasTermInValueFilter = function(someObj) {
-    var allObjectValues = Object.keys(someObj).map(getPropertyValue, someObj);
-    return allObjectValues.some(valueThatInclude, this);
-  };
-
-
-  $("#searchForm").submit(function(event){
-    event.preventDefault();
+  //Performs get request on every keypress to autopopulate
+  //search results
+  $("#searchField").on('keypress', function(event){
     var searchResults = $('#result');
-    searchResults.empty();
+    var searchField = $('#searchField')
+    var searchTerm = $('#searchField').val();
+    var data = {searchQuery: searchTerm}
+    if (event.keyCode === 13){  
+      event.preventDefault();
+    }
     $.ajax({
       method: "GET",
       dataType: "json",
-      url: "/api/contacts/",
+      url: "/api/search/",
+      data: data,
       success: function(data){
-        var searchTerm = $('#s').val();
-        data = data.filter(objectHasTermInValueFilter, searchTerm);
+        searchResults.toggleClass('hidden show');
+        searchResults.empty();
         populateList(searchResults, data);
-        // console.log('search results', data);
+      },
+      fail: function(jqXHR, textStatus){
+      console.log("Failed because: " + jqXHR.textStatus);
       }
     });
   });
-
 
   //Unhides the create new contact button on click
   $("#create-new-contact").on('click', function(){
     $(".new-contact").toggleClass('show hidden')
   });
 
-
-  //Submits new contact via Ajax (formatted by json)
+  //Submits new contact via Ajax 
   $("#new-contact").submit(function(event){
     event.preventDefault();
     var newContactCreate = $("#new-contact-create")
