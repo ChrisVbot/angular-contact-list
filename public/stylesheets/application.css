@@ -4,3 +4,14 @@
 .show{
   display: block;
 }
+
+.search-table {
+  display: inline-block;
+  float: right;
+}
+.navbar-fixed-left {
+  width: 200px;
+  position: fixed;
+  border-radius: 0;
+  height: 100%;
+}

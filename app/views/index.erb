@@ -2,45 +2,55 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact List O-Rama</title>
 </head>
 <body>
 
-<section class="contact-search">
-  <h3>Search contacts</h3>
-  <form action="/" id="searchForm">
-    <input type="text" id="searchField" placeholder="Search for name, phone#, or email" />
-  </form>
-  <table id="result">
-  </table>
-</section>
+<!-- <div class="jumbotron">
+  <h1>Contact List-o-rama!</h1>
+  <h5>Create, delete, or search through your contacts</h5>
+</div> -->
 
-<section class="newContactForm">
-  <button id="create-new-contact">Create new contact</button>
-  <form id="new-contact" class="new-contact hidden" method="POST" action="/new/">
-    <input type="text" name="first-name" id="first-name" placeholder="Enter first name" /><br>
-    <input type="text" name="last-name" id="last-name" placeholder="Enter last name" /><br>
-    <input type="text" name="email" id="email" placeholder="Enter email" /><br>
-    <input type="text" name="phone" id="phone" placeholder="Enter phone number" /><br>
+<div class="navbar navbar-inverse navbar-fixed-left">
+  <section class="col-md-4 contact-search">
+    <h3>Search contacts</h3>
+    <form action="/" id="searchForm">
+      <input type="text" id="searchField" placeholder="Search for name, phone#, or email" />
+    </form>
+  </section>
+  
+  <section class="newContactForm col-md-12">
+    <button type="button" class="btn btn-primary" id="create-new-contact">Create new contact</button>
+    <form id="new-contact" class="new-contact hidden" method="POST" action="/new/">
+      <input type="text" name="first-name" id="first-name" placeholder="Enter first name" /><br>
+      <input type="text" name="last-name" id="last-name" placeholder="Enter last name" /><br>
+      <input type="text" name="email" id="email" placeholder="Enter email" /><br>
+      <input type="text" name="phone" id="phone" placeholder="Enter phone number" /><br>
+      <input type="submit" class="btn btn-primary" name="submit" id="submit" value="Submit" />
+    </form>
+  </section>
+
+  <section class="all-contacts col-md-12">
+    <button type="button" class="btn btn-primary" id="list-all">Show all contacts</button>
+  </section>
+
+  <section class="delete-contact col-md-12">
+    <button type="button" class="btn btn-primary" id="delete-contact-button">Delete a contact</button>
+    <form id="delete" class="delete hidden" method="post" action="/delete/">
+    <input type="text" id="d" placeholder="Enter email" /><br>
     <input type="submit" name="submit" id="submit" value="Submit" />
-  </form>
-  <table id="new-contact-create"></table>
-</section>
-
-<section class="all-contacts">
-  <button id="list-all">Show all contacts</button>
-  <table class="contactList hidden"></table>
-</section>
-
-
-<section class="delete-contact">
-  <button id="delete-contact-button">Delete a contact</button>
-  <form id="delete" class="delete hidden" method="post" action="/delete/">
-  <input type="text" id="d" placeholder="Enter email" /><br>
-  <input type="submit" name="submit" id="submit" value="Submit" />
-  </form>
-  <table id="delete-result"></table>
-</section>
-<!-- <script src="https://code.jquery.com/jquery-3.1.0.js"></script> -->
+    </form>
+  </section>
+</div>
+  <div class="search-table col-md-6">
+    <table class='hidden' id='result'>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone number</th>
+      </tr>
+    </table>
+  </div>
 </body>
 </html>
