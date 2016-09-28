@@ -21,18 +21,22 @@ post '/api/new/' do
   last_name = newUser.values[1]
   email = newUser.values[2]
   phone_number = newUser.values[3]
-  binding.pry
-
   @contact = Contact.new(first_name: first_name, last_name: last_name, email: email, phone_number:phone_number)
-  @contact.save
-  @contact.to_json
+  if 
+    @contact.save
+    @contact.to_json
+  end
 end
 
 post '/api/delete/' do
-  info = params[:param]
-  @contact = Contact.where("email LIKE?", "%#{info}%")
-  @name = @contact[0]
-  @contact[0].destroy
-  @name.to_json
+  userId = JSON.parse(request.body.read)
+  id = userId.values[0]
+  @contact = Contact.where("id LIKE?", "#{id}")
+  # @name = @contact[0]
+  if 
+    @contact[0].destroy
+    response.status = 200
+  # @name.to_json
+  end
 end
 
