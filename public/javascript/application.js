@@ -59,7 +59,6 @@ $(document).ready(function() {
       success: function(data){
         searchResults.toggleClass('hidden show');
         populateList(searchResults, data);
-        
       },
       fail: function(jqXHR, textStatus){
       console.log("Failed because: " + jqXHR.textStatus);
@@ -106,8 +105,9 @@ $(document).ready(function() {
     event.preventDefault();
     var query = $("#d").val();
     var data = {param: query};
-    var answer = confirm ("Are you sure you want to delete" + " " + query + " " + "from the database?");
-      if (answer){
+    if($("#result tr > td:contains('" + query + "')").length === 1){
+      var answer = confirm ("Are you sure you want to delete" + " " + query + " " + "from the database?");
+      if (answer) {
         $.ajax({
           type: 'post',
           dataType: "json",
@@ -115,15 +115,22 @@ $(document).ready(function() {
           data: data,
         }).done(function(contact){
           console.log("Successful deletion");
-          console.log(contact);
           getList();
           $("#delete")[0].reset();
+          alert('Successful deletion');
         }).fail(function(jqXHR, textStatus){
           console.log("Delete failed because: " + jqXHR.textStatus);
         }).always(function(){
           console.log("Always");
         });
       };
-    });
+    }
+    else {
+      alert('Something went wrong. Please try again');
+    }
+  });
+  
+  getList();
 
 });
+

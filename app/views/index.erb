@@ -1,4 +1,5 @@
 <!doctype html>
+<html ng-app="contactApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -6,12 +7,7 @@
     <title>Contact List O-Rama</title>
 </head>
 <body>
-
-<!-- <div class="jumbotron">
-  <h1>Contact List-o-rama!</h1>
-  <h5>Create, delete, or search through your contacts</h5>
-</div> -->
-
+<contact-list></contact-list>
 <div class="navbar navbar-inverse navbar-fixed-left">
   <section class="col-md-4 contact-search">
     <h3>Search contacts</h3>
@@ -43,7 +39,8 @@
     </form>
   </section>
 </div>
-  <div class="search-table col-md-6">
+<div class="container">
+  <div class="search-table col-md-9">
     <table class='hidden' id='result'>
       <tr>
         <th>Name</th>
@@ -52,5 +49,7 @@
       </tr>
     </table>
   </div>
+</div>
+
 </body>
 </html>

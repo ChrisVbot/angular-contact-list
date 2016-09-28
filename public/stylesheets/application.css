@@ -1,17 +1,36 @@
+button {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.contact-search > h3 {
+  color: white;
+}
+
 .hidden{
   display: none;
 }
-.show{
-  display: block;
-}
 
-.search-table {
-  display: inline-block;
-  float: right;
-}
 .navbar-fixed-left {
   width: 200px;
   position: fixed;
   border-radius: 0;
   height: 100%;
 }
+
+.search-table {
+  margin-top: 5%;
+  float: right;
+}
+
+.show{
+  display: block;
+}
+
+#result {
+  font-size: 1.5em;
+  margin-left:-5%;
+}
+
+
+
