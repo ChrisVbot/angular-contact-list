@@ -5,6 +5,10 @@ get '/' do
   erb :index
 end
 
+get '/api/template/' do
+  File.read(File.join('public', 'contact-template.html'))
+end
+
 get '/api/contacts/' do
   Contact.all.to_json
 end
