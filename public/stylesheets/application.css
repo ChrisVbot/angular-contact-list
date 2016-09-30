@@ -32,5 +32,10 @@ button {
   margin-left:-5%;
 }
 
+.all-contacts {
+  transition: .8s;
+}
+
+
 
 

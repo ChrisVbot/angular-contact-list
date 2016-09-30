@@ -2,24 +2,27 @@ angular.
   module('contactApp').
   component('contactList', {
     template: 
-    '<button ng-click="all()">' + 'Click for all contacts' + '</button>' + 
-    'Search: ' +
-      '<input ng-model="$ctrl.query" />' + 
-    'Sort by: ' +
-      '<select ng-model="$ctrl.orderProp">' + 
-        '<option value="first_name">First name</option>' + 
-        '<option value="last_name">Last name</option>' + 
-        '<option value="email">Email</option>' + 
-      '</select>' + 
-      '<ul ng-repeat="name in $ctrl.users | filter: $ctrl.query | orderBy: $ctrl.orderProp">' + 
-        '<li>' +
-          '{{name.first_name}}' + ' ' + 
-          '{{name.last_name}}' + ' ' + 
-          '{{name.email}}' + ' ' +
-          '{{name.phone_number}}' +
-          '<a class="btn" ng-click="delete(name)">Delete</a>' +
-        '</li>' +
-      '</ul>' + 
+    '<button ng-click="all(); showDetails = ! showDetails">' + 'Show/hide all contacts' + '</button>' +
+    '<div ng-show="showDetails">' +
+      'Search: ' +
+        '<input ng-model="$ctrl.query" />' + 
+      'Sort by: ' +
+        '<select ng-model="$ctrl.orderProp">' + 
+          '<option value="first_name">First name</option>' + 
+          '<option value="last_name">Last name</option>' + 
+          '<option value="email">Email</option>' + 
+        '</select>' + 
+        '<ul ng-repeat="name in $ctrl.users | filter: $ctrl.query | orderBy: $ctrl.orderProp">' + 
+          '<li>' +
+            '{{name.first_name}}' + ' ' + 
+            '{{name.last_name}}' + ' ' + 
+            '{{name.email}}' + ' ' +
+            '{{name.phone_number}}' +
+            '<a class="btn" ng-click="delete(name)">Delete</a>' +
+          '</li>' +
+        '</ul>' + 
+
+      '</div>' +
       '<input type="text" name="firstName" placeholder="First name" ng-model="firstName" required />' +
       '<input type="text" name="firstName" placeholder="Last name" ng-model="lastName" required />' +
       '<input type="text" name="firstName" placeholder="Email" ng-model="email" required />' +
